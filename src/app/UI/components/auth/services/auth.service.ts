@@ -3,7 +3,7 @@ import { GenericHttpService } from '../../../../common/services/generic-http.ser
 import { Router } from '@angular/router';
 import { CryptoService } from '../../../../common/services/crypto.service';
 import { LoginResponseModel } from '../models/login-response.model';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,14 +15,15 @@ export class AuthService {
 	constructor(
 		private _http: GenericHttpService,
 		private _router: Router,
-		private _crypto: CryptoService
+		private _crypto: CryptoService,
+		private toastr: ToastrService
 	) { }
 
 	login(model: any) {
 		this._http.post<LoginResponseModel>(this.apiEndpoint, model, res => {
-			this._crypto.getDecodedAccessToken(res.token);
-
+			// this._crypto.getDecodedAccessToken(res.token);
 			localStorage.setItem("accessToken", res.token);
+			this.toastr.success("Başarılı", "Giriş Başarılı")
 			this._router.navigateByUrl("/");
 		})
 	}

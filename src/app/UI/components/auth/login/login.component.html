@@ -1,24 +1,17 @@
-<div class="container" >
-    <div class="example-container">
-        <mat-form-field>
-            <mat-label>Kullanıcı Adı</mat-label>
-            <input matInput placeholder="" [formControl]="userName" required>
-            @if (userName.invalid) {
-            <mat-error>{{getErrorMessage(0)}}</mat-error>
-            }
-        </mat-form-field>
+<div class="wrapper">
+    <div class="logo">
+        <img src="../../../../assets/logo.png" class="logo" alt="">
     </div>
-    
-    <div class="example-container">
-        <mat-form-field>
-            <mat-label>Şifre</mat-label>
-            <input matInput placeholder="" [formControl]="password" required>
-            @if (password.invalid) {
-            <mat-error>{{getErrorMessage(1)}}</mat-error>
-            }
-        </mat-form-field>
+    <div class="title text-center pt-4">
+        Shaker
     </div>
-    @if (userName.valid && password.valid) {
-        <button mat-stroked-button color="primary" (click)="login()">Giriş Yap</button>
-    }
+    <form class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="userName" required type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="Username">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="password" required type="password" class="form-control" placeholder="Şifre" aria-label="Password">
+        </div>
+        <button (click)="login()" [disabled]="userName.invalid || password.invalid" type="button" class="btn btn-warning btn-lg btn-block">Giriş Yap</button>
+    </form>
 </div>

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.navbar{
+    width: 100% !important;
+}
+
+.logo{
+    width: 150px;
+    height: auto;
+    border-top-right-radius: 80px;
+    border-bottom-left-radius: 80px;
+}
+
+.navbar-brand{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 100px;
+}
+
+.title{
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+}

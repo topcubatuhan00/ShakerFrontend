@@ -32,7 +32,6 @@ export class GenericHttpService {
             },
             (err: HttpErrorResponse) => {
                 this._error.errorHandler(err);
-                
             }
         );
     }

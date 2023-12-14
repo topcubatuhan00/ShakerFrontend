@@ -33,27 +33,6 @@ export class LoginComponent {
 	userName = new FormControl('', [Validators.required]);
 	password = new FormControl('', [Validators.required]);
 
-	getErrorMessage(flag: number) {
-		switch (flag) {
-			case 0:
-				if (this.userName.hasError('required')) {
-					return 'Kullanıcı adı alanı boş olamaz';
-				}
-
-				return '';
-				break;
-			case 1:
-				if (this.password.hasError('required')) {
-					return 'Şifre alanı boş olamaz';
-				}
-				return "";
-				break;
-			default:
-				return "";
-				break;
-		}
-	}
-
 	login(){
 		let obj = {
 			userName: this.userName.value,
