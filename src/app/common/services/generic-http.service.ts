@@ -30,8 +30,9 @@ export class GenericHttpService {
             (res) => {
                 callBack(res);
             },
-            (err: HttpErrorResponse) => {
-                this._error.errorHandler(err);
+            (err) => {
+                callBack(err)
+                
             }
         );
     }

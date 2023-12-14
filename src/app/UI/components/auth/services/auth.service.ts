@@ -21,9 +21,14 @@ export class AuthService {
 
 	login(model: any) {
 		this._http.post<LoginResponseModel>(this.apiEndpoint, model, res => {
+			if(res.status === 500){
+				this.toastr.error("Kullanıcı adı veya parola yanlış...","Hata" )
+				return;
+			}
+			
 			// this._crypto.getDecodedAccessToken(res.token);
 			localStorage.setItem("accessToken", res.token);
-			this.toastr.success("Başarılı", "Giriş Başarılı")
+			this.toastr.success("Giriş Başarılı","Başarılı")
 			this._router.navigateByUrl("/");
 		})
 	}
