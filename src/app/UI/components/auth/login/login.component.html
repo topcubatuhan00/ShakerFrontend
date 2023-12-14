@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="container" >
+    <div class="example-container">
+        <mat-form-field>
+            <mat-label>Kullanıcı Adı</mat-label>
+            <input matInput placeholder="" [formControl]="userName" required>
+            @if (userName.invalid) {
+            <mat-error>{{getErrorMessage(0)}}</mat-error>
+            }
+        </mat-form-field>
+    </div>
+    
+    <div class="example-container">
+        <mat-form-field>
+            <mat-label>Şifre</mat-label>
+            <input matInput placeholder="" [formControl]="password" required>
+            @if (password.invalid) {
+            <mat-error>{{getErrorMessage(1)}}</mat-error>
+            }
+        </mat-form-field>
+    </div>
+    @if (userName.valid && password.valid) {
+        <button mat-stroked-button color="primary" (click)="login()">Giriş Yap</button>
+    }
+</div>

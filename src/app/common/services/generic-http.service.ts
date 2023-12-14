@@ -6,41 +6,41 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class GenericHttpService {
-    
-    apiUrl: string = "https://localhost:7151/api/1.0/";
-    token: any = localStorage.getItem("accessToken")?.toString();
-    
+
+    apiUrl: string = "https://localhost:7127/";
+
     constructor(
         private _http: HttpClient,
         private _error: ErrorService
     ) { }
 
-    get<T>(api: string, callBack: (res: T) => void, authorize: boolean = true, diffApi: boolean = false) {
-
-        this._http.get<T>(`${this.setApi(diffApi, api)}`, this.setOptions(authorize)).subscribe({
-            next: (res) => callBack(res),
-            error: (err: HttpErrorResponse) => this._error.errorHandler(err),
-        });
+    get<T>(api: string, callBack: (res: T) => void, diffApi: boolean = false) {
+        this._http.get<T>(`${this.setApi(diffApi, api)}`).subscribe(
+            (res) => {
+                callBack(res);
+            },
+            (err: HttpErrorResponse) => {
+                this._error.errorHandler(err);
+            }
+        );
     }
 
-    post<T>(api: string, model: any, callBack: (res: T) => void, authorize: boolean = true, diffApi: boolean = false) {
-
-        this._http.post<T>(`${this.setApi(diffApi, api)}`, model, this.setOptions(authorize)).subscribe({
-            next: (res) => callBack(res),
-            error: (err: HttpErrorResponse) => this._error.errorHandler(err),
-        });
+    post<T>(api: string, model: any, callBack: (res: T) => void, diffApi: boolean = false) {
+        this._http.post<T>(`${this.setApi(diffApi, api)}`, model).subscribe(
+            (res) => {
+                callBack(res);
+            },
+            (err: HttpErrorResponse) => {
+                this._error.errorHandler(err);
+                
+            }
+        );
     }
 
     setApi(diffApi: boolean, api: string) {
-        if (diffApi)
+        if (diffApi) {
             return api;
+        }
         return this.apiUrl + api;
     }
-
-    setOptions(authorize: boolean) {
-        if (authorize)
-            return { headers: { "Authorization": `Bearer ${localStorage.getItem(this.token)}` } }
-        return {}
-    }
-
 }

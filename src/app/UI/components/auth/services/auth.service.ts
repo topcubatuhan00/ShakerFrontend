@@ -13,16 +13,18 @@ export class AuthService {
 	apiEndpoint = "Auth/Login";
 
 	constructor(
-		private _http : GenericHttpService,
-		private _router : Router,
-		private _crypto : CryptoService
+		private _http: GenericHttpService,
+		private _router: Router,
+		private _crypto: CryptoService
 	) { }
 
-		login(model : any){
-			this._http.post<LoginResponseModel>(this.apiEndpoint, model, res => {
-				let cryptoValue = this._crypto.encrypt(JSON.stringify(res));
-				localStorage.setItem("accessToken", cryptoValue);
-				this._router.navigateByUrl("/");
-			})
-		}
+	login(model: any) {
+		this._http.post<LoginResponseModel>(this.apiEndpoint, model, res => {
+			this._crypto.getDecodedAccessToken(res.token);
+
+			localStorage.setItem("accessToken", res.token);
+			this._router.navigateByUrl("/");
+		})
+	}
+
 }
