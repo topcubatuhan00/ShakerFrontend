@@ -4,6 +4,10 @@
     width: 100% !important;
 }
 
+.navbar-dark{
+    background-color: #0D1B2A !important;
+}
+
 .logo{
     width: 150px;
     height: auto;
@@ -22,4 +26,23 @@
 .title{
     font-family: 'Dancing Script', cursive;
     font-size: 48px;
+}
+
+.quit{
+    cursor: pointer;
+}
+
+@media(max-width: 600px) {
+    .logo {
+        display: none;
+    }
+
+    .navbar-brand{
+        margin: 0;
+        padding: 10px;
+    }
+    .title{
+        text-align: center;
+        width: 100%;
+    }
 }

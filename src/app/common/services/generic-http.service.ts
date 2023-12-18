@@ -17,9 +17,11 @@ export class GenericHttpService {
     get<T>(api: string, callBack: (res: T) => void, diffApi: boolean = false) {
         this._http.get<T>(`${this.setApi(diffApi, api)}`).subscribe(
             (res) => {
+                console.log(res);
                 callBack(res);
             },
             (err: HttpErrorResponse) => {
+                console.log(err);
                 this._error.errorHandler(err);
             }
         );
