@@ -14,14 +14,12 @@ export class GenericHttpService {
         private _error: ErrorService
     ) { }
 
-    get<T>(api: string, callBack: (res: T) => void, diffApi: boolean = false) {
-        this._http.get<T>(`${this.setApi(diffApi, api)}`).subscribe(
+    get<T>(api: string, callBack: (res: T) => void) {
+        this._http.get<T>(this.apiUrl+api).subscribe(
             (res) => {
-                console.log(res);
                 callBack(res);
             },
             (err: HttpErrorResponse) => {
-                console.log(err);
                 this._error.errorHandler(err);
             }
         );

@@ -1,0 +1,31 @@
+<div class="container">
+    <div>
+        <svg (click)="backPage()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" style="cursor: pointer;" class="mb-2 bi bi-caret-left"
+            viewBox="0 0 16 16">
+            <path
+                d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
+        </svg>
+    </div>
+    <form class="form">
+        <div class="mb-3">
+            <label for="ShakerName" class="form-label">Çalkalayıcı Adı</label>
+            <input [formControl]="shakerName" type="text" class="form-control" id="ShakerName">
+        </div>
+
+        <div class="mb-3">
+            <label for="BuildingName" class="form-label">Bina Adı</label>
+            <input [formControl]="buildingName" type="text" class="form-control" id="BuildingName">
+        </div>
+
+        <div class="mb-3">
+            <label for="FloorCount" class="form-label">Bulunduğu Kat</label>
+            <input [formControl]="floorCount" type="number" class="form-control" id="FloorCount">
+        </div>
+
+        <div class="mb-3">
+            <label for="RoomName" class="form-label">Bulunduğu Oda Adı</label>
+            <input [formControl]="roomName" type="text" class="form-control" id="RoomName">
+        </div>
+        <button (click)="createShaker($event)" type="submit" class="btn btn-outline-dark w-100">Kaydet</button>
+    </form>
+</div>

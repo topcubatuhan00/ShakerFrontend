@@ -5,4 +5,5 @@ export class ShakerModel{
     floorCount:number = 0;
     roomName:string = "";
     shakerOptionsId:number = 0;
+    status:boolean = false;
 }

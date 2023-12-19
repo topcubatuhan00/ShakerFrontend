@@ -1,4 +1,4 @@
-.container {
+.cardContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -12,8 +12,37 @@
     margin-bottom: 20px; 
 }
 
+
+.shakerLocations{
+    background-color: #edf6f9;   
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.shakerLocations > h4{
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+
 @media (max-width: 767px) {
     .card {
         flex: 1 1 calc(100% - 10px); 
+    }
+}
+
+@media (max-width: 450px) {
+    .locationBase,.headerArea {
+        flex-direction: column !important;
+    }
+    .shakerLocations > h4{
+        margin: 0;
+        text-align: center;
+        padding: 5px;
     }
 }

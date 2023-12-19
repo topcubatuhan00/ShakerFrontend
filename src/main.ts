@@ -22,6 +22,10 @@ bootstrapApplication(AppComponent, {
 						{
 							path: "",
 							loadComponent: () => import("./app/UI/components/home/home.component").then(c => c.HomeComponent)
+						},
+						{
+							path: "CreateShaker",
+							loadComponent: () => import("./app/UI/components/create-shaker/create-shaker.component").then(c => c.CreateShakerComponent)
 						}
 
 					]

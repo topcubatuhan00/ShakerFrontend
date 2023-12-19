@@ -7,12 +7,12 @@ import { ShakerModel } from '../models/shaker.model';
 })
 export class HomeService {
 
-	apiEndpoint = "Shakers/";
+	getAllApiEndpoint = "Shakers/GetAllShakers";
 	constructor(
 		private _http: GenericHttpService,
 	) { }
 
 	getAllShakers(callBack: (res: ShakerModel[]) => void) {
-        this._http.get<ShakerModel[]>(this.apiEndpoint+'GetAllShakers', callBack);
+        this._http.get<ShakerModel[]>(this.getAllApiEndpoint, callBack);
     }
 }
