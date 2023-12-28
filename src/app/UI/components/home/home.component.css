@@ -3,6 +3,11 @@
     overflow-y: auto;
 }
 
+.titleContainer{
+    background-color: #edf6f9;
+    border-radius: 5px;
+}
+
 .cardContainer {
     display: flex;
     flex-direction: row;

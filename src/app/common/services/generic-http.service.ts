@@ -25,9 +25,9 @@ export class GenericHttpService {
         );
     }
 
-    post<T>(api: string, model: any, callBack: (res: T) => void, diffApi: boolean = false) {
+    post<T>(api: string, model: any, callBack: (res: T) => void, diffApi: boolean = false) {        
         this._http.post<T>(`${this.setApi(diffApi, api)}`, model).subscribe(
-            (res) => {
+            (res) => {               
                 callBack(res);
             },
             (err) => {

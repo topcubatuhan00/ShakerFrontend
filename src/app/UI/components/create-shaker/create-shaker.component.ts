@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateShakerService } from './services/create-shaker.service';
+import { CryptoService } from '../../../common/services/crypto.service';
 
 @Component({
 	selector: 'app-create-shaker',
@@ -22,6 +23,7 @@ export class CreateShakerComponent {
 	constructor(
 		private _router: Router,
 		private _createShakerService: CreateShakerService,
+		private _crypto: CryptoService
 	){}
 
 	backPage(){
@@ -31,13 +33,21 @@ export class CreateShakerComponent {
 	createShaker(event: Event){
 		event.preventDefault();
 
+		let token = localStorage.getItem("accessToken")
+		let tokenDecrpt;
+		if(token !== null){
+			tokenDecrpt = this._crypto.getDecodedAccessToken(token)
+		}
+		let creatorName = tokenDecrpt.Name;
+
 		let obj = {
 			shakerName: this.shakerName.value,
 			buildingName: this.buildingName.value,
 			floorCount: this.floorCount.value,
 			roomName: this.roomName.value,
 			shakerOptionsId: this.shakerOptionsId,
-			status: this.status
+			status: this.status,
+			creatorName: creatorName
 		}
 		
 		this._createShakerService.createShaker(obj);

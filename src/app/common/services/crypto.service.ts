@@ -7,6 +7,6 @@ import { jwtDecode } from "jwt-decode";
 export class CryptoService {
 	getDecodedAccessToken(token: string): any {
 		const decodedToken = jwtDecode(token);
-		console.log(decodedToken);
+		return decodedToken;
 	}
 }

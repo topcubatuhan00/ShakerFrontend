@@ -16,7 +16,6 @@ export class CreateShakerService {
 
 	createShaker(model: any){
 		this._http.post<string>(this.apiEndpoint, model, res => {		
-			console.log(res);
 			this.toastr.success("Çalkalayıcı Başarıyla Eklendi", "Başarılı")
 		})
 	}

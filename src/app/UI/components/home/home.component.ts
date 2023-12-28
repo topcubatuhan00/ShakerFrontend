@@ -20,15 +20,17 @@ export class HomeComponent {
 	shakerResponse: ShakerModel[] = [];
 
 	ngOnInit(): void {
-		this._homeService.getAllShakers((shakerResponse: ShakerModel[]) => {
-			console.log(shakerResponse);
-			
+		this._homeService.getAllShakers((shakerResponse: ShakerModel[]) => {		
 			this.shakerResponse = shakerResponse;
 		});
 	}
 
 	addShaker(){
 		this._router.navigateByUrl("/CreateShaker");
+	}
+
+	deleteShaker(shakerId: number){		
+		this._homeService.deleteShaker(shakerId);
 	}
 
 }
