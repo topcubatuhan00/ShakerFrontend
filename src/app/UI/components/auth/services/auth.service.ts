@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthService {
 
-	apiEndpoint = "Auth/Login";
+	apiLoginEndpoint = "Auth/Login";
+	apiRegisterEndpoint = "Auth/Register";
 
 	constructor(
 		private _http: GenericHttpService,
@@ -20,7 +21,7 @@ export class AuthService {
 	) { }
 
 	login(model: any) {
-		this._http.post<LoginResponseModel>(this.apiEndpoint, model, res => {		
+		this._http.post<LoginResponseModel>(this.apiLoginEndpoint, model, res => {
 			if (res.token !== undefined) {
 				// this._crypto.getDecodedAccessToken(res.token);
 				localStorage.setItem("accessToken", res.token);
@@ -29,6 +30,19 @@ export class AuthService {
 				return;
 			}
 			this.toastr.error("Kullanıcı adı veya parola yanlış...", "Hata")
+			return;
+		})
+	}
+
+	register(model: any) {
+		this._http.post<LoginResponseModel>(this.apiRegisterEndpoint, model, res => {		
+			if (res.token !== undefined) {
+				localStorage.setItem("accessToken", res.token);
+				this.toastr.success("Kullanıcı Başarıyla Kayıt Oldu", "Başarılı")
+				this._router.navigateByUrl("/");
+				return;
+			}
+			this.toastr.error("Kayıt Sırasında Bir Hata Oluştu", "Hata")
 			return;
 		})
 	}

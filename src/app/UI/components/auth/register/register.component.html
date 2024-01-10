@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="logo">
+        <img src="../../../../assets/logo.png" class="logo" alt="">
+    </div>
+    <div class="title text-center pt-4">
+        L~Shaker
+    </div>
+    <form class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="name" required type="text" class="form-control" placeholder="İsim" aria-label="Name">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="lastName" required type="text" class="form-control" placeholder="Soy İsim" aria-label="LastName">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="userName" required type="text" class="form-control" placeholder="Kullanıcı Adı" aria-label="Username">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="email" required type="email" class="form-control" placeholder="Mail Adresi" aria-label="Mail">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <input matInput [formControl]="password" required type="password" class="form-control" placeholder="Şifre" aria-label="Password">
+        </div>
+        <button (click)="register()" [disabled]="userName.invalid || password.invalid || email.invalid || name.invalid ||lastName.invalid " type="button" class="btn btn-warning btn-lg btn-block">Kayıt Ol</button>
+    </form>
+</div>

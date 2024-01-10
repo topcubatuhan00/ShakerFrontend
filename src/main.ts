@@ -33,6 +33,10 @@ bootstrapApplication(AppComponent, {
 				{
 					path: "Login",
 					loadComponent: () => import("./app/UI/components/auth/login/login.component").then(c => c.LoginComponent)
+				},
+				{
+					path: "Register",
+					loadComponent: () => import("./app/UI/components/auth/register/register.component").then(c => c.RegisterComponent)
 				}
 			]),
 			BrowserAnimationsModule,

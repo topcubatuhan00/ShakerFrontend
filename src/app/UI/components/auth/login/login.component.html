@@ -3,7 +3,7 @@
         <img src="../../../../assets/logo.png" class="logo" alt="">
     </div>
     <div class="title text-center pt-4">
-        Shaker
+        L~Shaker
     </div>
     <form class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
@@ -14,4 +14,7 @@
         </div>
         <button (click)="login()" [disabled]="userName.invalid || password.invalid" type="button" class="btn btn-warning btn-lg btn-block">Giriş Yap</button>
     </form>
+    <div class="text-center">
+        <span>Hesabın Yok mu? <a style="cursor: pointer;" (click)="register()">Kayıt Ol</a></span>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,7 +28,10 @@ import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angu
 })
 export class LoginComponent {
 
-	constructor(private _auth: AuthService) {}
+	constructor(
+		private _auth: AuthService,
+		private _router: Router,
+		) {}
 
 	userName = new FormControl('', [Validators.required]);
 	password = new FormControl('', [Validators.required]);
@@ -40,5 +43,10 @@ export class LoginComponent {
 		}
 
 		this._auth.login(obj);
+	}
+
+	
+	register() {
+		this._router.navigateByUrl("/Register");
 	}
 }
