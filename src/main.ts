@@ -26,6 +26,10 @@ bootstrapApplication(AppComponent, {
 						{
 							path: "CreateShaker",
 							loadComponent: () => import("./app/UI/components/create-shaker/create-shaker.component").then(c => c.CreateShakerComponent)
+						},
+						{
+							path: "ShakerDetail/:id",
+							loadComponent: () => import("./app/UI/components/shaker-detail/shaker-detail.component").then(c => c.ShakerDetailComponent)
 						}
 
 					]

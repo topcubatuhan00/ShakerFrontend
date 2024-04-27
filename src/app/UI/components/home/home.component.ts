@@ -39,6 +39,10 @@ export class HomeComponent {
 		this._homeService.deleteShaker(shakerId);
 	}
 
+	routeDetail(id: number){
+		this._router.navigateByUrl("/ShakerDetail/" + id);
+	}
+
 	filterResult() {
 		this.shakerResponse = this.filterResponse;
 		switch (this.isOnlyActive) {
