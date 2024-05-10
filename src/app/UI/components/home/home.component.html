@@ -9,7 +9,7 @@
         <mat-accordion class="">
             <mat-expansion-panel class="filter" (opened)="panelOpenState" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="">
-                    <mat-panel-title >
+                    <mat-panel-title>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-funnel" viewBox="0 0 16 16">
                             <path
@@ -18,7 +18,8 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div>
-                    <select [(ngModel)]="isOnlyActive" class="col-md-2 form-select" aria-label="Filtrele" (change)="filterResult()">
+                    <select [(ngModel)]="isOnlyActive" class="col-md-2 form-select" aria-label="Filtrele"
+                        (change)="filterResult()">
                         <option value="0" selected>Hepsini Getir</option>
                         <option value="1">Çalışan Çalkalayıcılar</option>
                         <option value="2">Çalışmayan Çalkalayıcılar</option>
@@ -27,7 +28,7 @@
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-    
+
 
     <div class="cardContainer">
         @for (shaker of shakerResponse; track $index) {
@@ -72,7 +73,8 @@
                     </div>
                 </div>
                 <div class="d-flex">
-                    <button (click)="routeDetail(shaker.id)" class="btn btn-outline-dark w-100 mt-4">Çalkalayıcı İşlemleri</button>
+                    <button (click)="routeDetail(shaker.id)" class="btn btn-outline-dark w-100 mt-4">Çalkalayıcı
+                        İşlemleri</button>
                     <button (click)="deleteShaker(shaker.id)" class="btn btn-outline-danger mx-3 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -88,7 +90,8 @@
     </div>
     }@else{
     <h1>Tanımlı Çalkalayıcı Bulunamadı</h1>
-    <button (click)="addShaker()" type="button" class="btn btn-outline-success">Çalkalayıcı Tanımla</button>
+    <button (click)="addShaker()" type="button" class="btn btn-success">Çalkalayıcı Tanımla</button><br />
+    <button (click)="refreshPage()" type="button" class="btn btn-warning mt-2">Yenile</button>
     }
 
 </div>

@@ -1,1 +1,129 @@
-<p>shaker-detail works!</p>
+<div class="container py-5">
+	@if(isDataAvailable){
+	<div class="dataContainer">
+		@if(!shakerOptionsResponse.isStoped){
+		<div class="dataTop">
+			<div class="topDataContainer">
+				<h1>Çalkalayıcı Adı </h1>
+				<span>{{shakerNameModel.shakerName}}</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+			<div class="topDataContainer mt-4">
+				<h1>Çalışma Durumu</h1>
+				<span>{{shakerOptionsResponse.isStoped ? 'Çalışmıyor' : 'Çalışıyor'}}</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+			<div class="topDataContainer mt-4">
+				<h1>Durdurulacağı Zaman</h1>
+				<span>
+					{{shakerOptionsResponse.stopedTime.toString().split("T")[0]}} |
+					{{shakerOptionsResponse.stopedTime.toString().split("T")[1].split(":")[0]
+					+":"+shakerOptionsResponse.stopedTime.toString().split("T")[1].split(":")[1]}}
+				</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+			<div class="topDataContainer mt-4">
+				<h1>Sayaç : </h1>
+				<span>{{getTime(shakerOptionsResponse.stopedTime)}}</span>
+			</div>
+		</div>
+		}@else {
+		<div class="dataTop">
+			<div class="topDataContainer">
+				<h1>Çalkalayıcı Adı </h1>
+				<span>{{shakerNameModel.shakerName}}</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+			<div class="topDataContainer mt-4">
+				<h1>Çalışma Durumu</h1>
+				<span>{{shakerOptionsResponse.isStoped ? 'Çalışmıyor' : 'Çalışıyor'}}</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+			<div class="topDataContainer mt-4">
+				<h1>Son Durdurulduğu Zaman</h1>
+				<span>
+					{{shakerOptionsResponse.stopedTime.toString().split("T")[0]}} |
+					{{shakerOptionsResponse.stopedTime.toString().split("T")[1].split(":")[0]
+					+":"+shakerOptionsResponse.stopedTime.toString().split("T")[1].split(":")[1]}}
+				</span>
+			</div>
+			<hr style="border: 3px solid #FFF;border-radius: 5px;" />
+		</div>
+		}
+		<div class="dataButtonContainer my-5">
+			@if(shakerOptionsResponse.isStoped){
+			<button class="dataButtonContainerSuccess" (click)="isDataAvailable = false">Çalkalayıcıyı Başlat</button>
+			}@else {
+			<button class="dataButtonContainerDanger" (click)="isDataAvailable = false">Çalkalayıcıyı Durdur</button>
+			}
+		</div>
+		<mat-accordion class="oldDataTop">
+			<mat-expansion-panel class="oldDataContainer" (opened)="panelOpenState = true"
+				(closed)="panelOpenState = false">
+				<mat-expansion-panel-header class="oldDataHeader">
+					<mat-panel-title>
+						Geçmiş Bilgiler
+					</mat-panel-title>
+					<mat-panel-description>
+						Geçmiş Çalkalayıcı Bilgilerini Görmek İçin Tıklayınız
+					</mat-panel-description>
+				</mat-expansion-panel-header>
+				<div class="oldDataInner">
+					<div>
+						<table mat-table [dataSource]="oldDataResponse">
+
+							<!-- Position Column -->
+							<ng-container matColumnDef="position">
+								<th mat-header-cell *matHeaderCellDef>#</th>
+								<td mat-cell *matCellDef="let element"> {{element.position}} </td>
+							</ng-container>
+
+							<!-- Name Column -->
+							<ng-container matColumnDef="date">
+								<th mat-header-cell *matHeaderCellDef> Durdurulduğu Zamanlar </th>
+								<td mat-cell *matCellDef="let element"> 
+									{{element.stopedTime.toString().split("T")[0]+"  |  "}}
+									{{element.stopedTime.toString().split("T")[1].split(":")[0]+":"+element.stopedTime.toString().split("T")[1].split(":")[1]}}
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="time">
+								<th mat-header-cell *matHeaderCellDef>Çalıştığı Süre (dk.)</th>
+								<td mat-cell *matCellDef="let element"> 
+									{{element.runningTime}}
+								</td>
+							</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+						</table>
+					</div>
+				</div>
+			</mat-expansion-panel>
+		</mat-accordion>
+
+	</div>
+	}@else {
+	<div class="noDataContainer">
+		<h1>Çalkalayıcı Ayarları</h1>
+		<hr />
+		<div class="noDataInner">
+			<div class="noDataLeft">
+				<span class="infoText">Dilerseniz aşığdaki kısımdaki butona tıklayarak çalkalayıcıyı süresiz olarak
+					çalıştırabilirsiniz.</span>
+				<button (click)="runNow()" type="button"
+					class="acceptButton mt-4 btn btn-outline-warning text-white">Çalkalayıcı
+					Çalıştır</button>
+			</div>
+			<div class="noDataRight">
+				<span class="infoText">Dilerseniz aşığdaki alana dakika bilgisi girerek çalkalayıcıyı
+					çalıştırabilirsiniz.</span>
+				<input class="timer" type="number" name="time" #timeInput />
+				<button (click)="runWithTime(timeInput.value)" type="button"
+					class="acceptButton mt-4 btn btn-outline-warning text-white">Zamanlayıcıyı
+					Başlat</button>
+			</div>
+		</div>
+	</div>
+	}
+</div>

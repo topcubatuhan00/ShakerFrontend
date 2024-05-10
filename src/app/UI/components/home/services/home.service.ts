@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { GenericHttpService } from '../../../../common/services/generic-http.service';
 import { ShakerModel } from '../models/shaker.model';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'

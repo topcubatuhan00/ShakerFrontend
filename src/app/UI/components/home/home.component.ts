@@ -43,21 +43,25 @@ export class HomeComponent {
 		this._router.navigateByUrl("/ShakerDetail/" + id);
 	}
 
+	refreshPage(){
+		window.location.reload();
+	}
+
 	filterResult() {
 		this.shakerResponse = this.filterResponse;
 		switch (this.isOnlyActive) {
 			case "1":
-				console.log("çalışanı listele");
+				// console.log("çalışanı listele");
 				this.shakerResponse = this.shakerResponse.filter(shaker => shaker.status === true);
 				this.panelOpenState = false;
 				break;
 			case "2":
-				console.log("duranı listele");
+				// console.log("duranı listele");
 				this.shakerResponse = this.shakerResponse.filter(shaker => shaker.status === false);
 				this.panelOpenState = false;
 				break;
 			default:
-				console.log("karışık listele");
+				// console.log("karışık listele");
 				this.panelOpenState = false;
 				break;
 		}
